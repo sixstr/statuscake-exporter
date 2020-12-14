@@ -2,6 +2,8 @@
 
 Prometheus StatusCake exporter
 
+Forked from https://github.com/mtulio/statuscake-exporter
+
 Exporter [consumes data from StatusCake API](https://www.statuscake.com/api/Period%20Data/Get%20Period%20Data.md) using the [official lib](https://godoc.org/github.com/sixstr/statuscake) exposing it to Prometheus on port X.
 
 Supported metrics:
@@ -60,30 +62,15 @@ statuscake_test_uptime{name="MyApp01_-_api"} 100
 
 ## USAGE DOCKER
 
-```bash
-docker run -it mtulio/statuscake-exporter:v0.3.1 \
-  -stk.username $STATUSCAKE_USER \
-  -stk.apikey $STATUSCAKE_APIKEY
-```
-
-OR, to build your own Docker image:
+ Build Docker image:
 
 `make build`
 
 The binary will be created on `./bin` dir.
 
-`docker build  .`
+`docker build -t sixstr/statuscake-exporter .`
 
 This will create a docker image.
 
-Set STATUSCAKE_APIKEY and STATUSCAKE_USER variables for Docker image, and  `docker run $image-id-here`
+Set STATUSCAKE_APIKEY and STATUSCAKE_USER variables for Docker image, and  `docker run -d --rm -p 9190:9190 sixstr/sc-exporter`
 
-## CONTRIBUTOR
-
-You can contribute with three ways: using, testing and developing.
-
-* Fork me
-* Open an PR with enhancements, bugfixes, etc
-* Open an issue
-
-You are welcome. =)
