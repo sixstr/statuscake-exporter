@@ -29,17 +29,17 @@ func NewStkTestCollector() (Collector, error) {
 		stkTestUp: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, stkTestCollectorSubsystem, "up"),
 			"StatusCake Test Status",
-			[]string{"name"}, nil,
+			[]string{"name", "test_tags", "paused","contactGroupId"}, nil,
 		),
 		stkTestUptime: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, stkTestCollectorSubsystem, "uptime"),
 			"StatusCake Test Uptime from the last 7 day",
-			[]string{"name"}, nil,
+			[]string{"name", "test_tags", "paused","contactGroupId"}, nil,
 		),
 		stkTestPerf: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, stkTestCollectorSubsystem, "performance_ms"),
 			"StatusCake Test performance data",
-			[]string{"name", "location", "status"}, nil,
+			[]string{"name", "test_tags", "paused","contactGroupId", "location", "status"}, nil,
 		),
 	}, nil
 }
@@ -77,12 +77,18 @@ func (c *stkTestCollector) updateStkTest(ch chan<- prometheus.Metric) error {
 			prometheus.GaugeValue,
 			float64(testStatus),
 			test.WebsiteName,
+			strings.Join(test.TestTags,","),
+			strconv.FormatBool(test.Paused),
+			strings.Join(test.ContactGroup[:],","),
 		)
 		ch <- prometheus.MustNewConstMetric(
 			c.stkTestUptime,
 			prometheus.GaugeValue,
 			float64(test.Uptime),
 			test.WebsiteName,
+			strings.Join(test.TestTags,","),
+			strconv.FormatBool(test.Paused),
+			strings.Join(test.ContactGroup[:],","),
 		)
 		if len(test.PerformanceData) > 0 {
 			for p := range test.PerformanceData {
@@ -93,6 +99,9 @@ func (c *stkTestCollector) updateStkTest(ch chan<- prometheus.Metric) error {
 					test.WebsiteName,
 					test.PerformanceData[p].Location,
 					strconv.Itoa(test.PerformanceData[p].Status),
+					strings.Join(test.TestTags,","),
+					strconv.FormatBool(test.Paused),
+					strings.Join(test.ContactGroup[:],","),
 				)
 			}
 		}
