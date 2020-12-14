@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/mtulio/statuscake-exporter/stk"
+	"github.com/sixstr/statuscake-exporter/stk"
 	"github.com/prometheus/client_golang/prometheus"
 )
 

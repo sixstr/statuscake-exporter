@@ -19,7 +19,7 @@ changelog:
     - '^test:'
 nfpm:
   name_template: '{{ .ProjectName }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
-  homepage:  https://github.com/mtulio/statuscake-exporter
+  homepage:  https://github.com/sixstr/statuscake-exporter
   description: StatusCake Exporter for Prometheus
   maintainer: Marco Tulio R Braga <root@mtulio.eng.br>
   license: Apache-2
