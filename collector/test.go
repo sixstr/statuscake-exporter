@@ -29,17 +29,17 @@ func NewStkTestCollector() (Collector, error) {
 		stkTestUp: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, stkTestCollectorSubsystem, "up"),
 			"StatusCake Test Status",
-			[]string{"name", "websiteURL", "test_tags", "paused","contactGroupId"}, nil,
+			[]string{"name", "instance", "test_tags", "paused","contactGroupId"}, nil,
 		),
 		stkTestUptime: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, stkTestCollectorSubsystem, "uptime"),
 			"StatusCake Test Uptime from the last 7 day",
-			[]string{"name", "websiteURL", "test_tags", "paused","contactGroupId"}, nil,
+			[]string{"name", "instance", "test_tags", "paused","contactGroupId"}, nil,
 		),
 		stkTestPerf: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, stkTestCollectorSubsystem, "performance_ms"),
 			"StatusCake Test performance data",
-			[]string{"name", "websiteURL", "test_tags", "paused","contactGroupId", "location", "status"}, nil,
+			[]string{"name", "instance", "test_tags", "paused","contactGroupId", "location", "status"}, nil,
 		),
 	}, nil
 }
