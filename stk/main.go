@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	statuscake "github.com/sixstr/statuscake"
+	statuscake "github.com/mtulio/statuscake"
 )
 
 // StkOptions StatusCake CLI Options
