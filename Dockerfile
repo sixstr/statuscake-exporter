@@ -1,19 +1,12 @@
-FROM alpine:latest
-LABEL description="alpine with go and statuscake community library" \
-      maintainer="Sergey Bryzgalov <sergey.bryzgalov@jetbrains.com>" \
-      source="https://jetbrains.team/p/im/code/statuscake-exporter"
-RUN apk update && \
-    apk add ca-certificates && \
-    update-ca-certificates && \
-    groupadd --gid 1024 statuscake-exporter && \
-    useradd \
-        --uid 1024 \
-        --gid 1024 \
-        --create-home \
-        --shell /bin/bash \
-        statuscake-exporter
+FROM golang:1.12 AS builder
+WORKDIR /bin
+ADD . .
+RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build .
 
-COPY bin/statuscake-exporter /statuscake-exporter
-
-USER 1024
-ENTRYPOINT ["/statuscake-exporter"]
+FROM alpine:3.9
+LABEL maintainer="sergey.bryzgalov@jetbrains.com"
+EXPOSE 9190
+RUN apk add ca-certificates && mkdir /app
+WORKDIR /app
+COPY --from=builder /bin/statuscake-exporter /app
+ENTRYPOINT ["/app/statuscake-exporter"]
