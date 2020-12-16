@@ -1,12 +1,11 @@
 package collector
 
 import (
+	"github.com/prometheus/client_golang/prometheus"
 	"math"
+	"stk"
 	"strconv"
 	"time"
-
-	"github.com/sixstr/statuscake-exporter/stk"
-	"github.com/prometheus/client_golang/prometheus"
 )
 
 type stkSSLCollector struct {

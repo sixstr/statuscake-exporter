@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/sixstr/statuscake-exporter/collector"
-	"github.com/sixstr/statuscake-exporter/stk"
+	"collector"
+	"stk"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/version"
 	log "github.com/sirupsen/logrus"

@@ -1,4 +1,4 @@
-module github.com/sixstr/statuscake-exporter
+module git.jetbrains.team/IM/statuscake-exporter
 
 go 1.12
 
