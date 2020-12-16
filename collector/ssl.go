@@ -2,8 +2,8 @@ package collector
 
 import (
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/sixstr/statuscake-exporter/stk"
 	"math"
-	"stk"
 	"strconv"
 	"time"
 )

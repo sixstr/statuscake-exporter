@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/prometheus/client_golang/prometheus"
-	"stk"
+	"github.com/sixstr/statuscake-exporter/stk"
 )
 
 type stkTestCollector struct {

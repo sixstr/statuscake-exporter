@@ -1,4 +1,4 @@
-module git.jetbrains.team/IM/statuscake-exporter
+module github.com/sixstr/statuscake-exporter
 
 go 1.12
 
@@ -10,3 +10,7 @@ require (
 	github.com/prometheus/common v0.6.0
 	github.com/sirupsen/logrus v1.4.2
 )
+
+//replace github.com/sixstr/statuscake-exporter/collector => ./collector
+//
+//replace github.com/sixstr/statuscake-exporter/stk => ./stk

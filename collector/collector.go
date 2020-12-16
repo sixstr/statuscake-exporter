@@ -8,7 +8,7 @@ import (
 
 	"github.com/apex/log"
 	"github.com/prometheus/client_golang/prometheus"
-	"stk"
+	"github.com/sixstr/statuscake-exporter/stk"
 )
 
 // MasterCollector implements the prometheus.Collector interface.
