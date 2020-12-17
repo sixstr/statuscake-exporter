@@ -29,17 +29,17 @@ func NewStkTestCollector() (Collector, error) {
 		stkTestUp: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, stkTestCollectorSubsystem, "up"),
 			"StatusCake Test Status",
-			[]string{"name", "instance", "test_tags", "paused", "contactGroupId"}, nil,
+			[]string{"name", "instance", "team", "test_tags", "paused", "contactGroupId"}, nil,
 		),
 		stkTestUptime: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, stkTestCollectorSubsystem, "uptime"),
 			"StatusCake Test Uptime from the last 7 day",
-			[]string{"name", "instance", "test_tags", "paused", "contactGroupId"}, nil,
+			[]string{"name", "instance", "team", "test_tags", "paused", "contactGroupId"}, nil,
 		),
 		stkTestPerf: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, stkTestCollectorSubsystem, "performance_ms"),
 			"StatusCake Test performance data",
-			[]string{"name", "instance", "test_tags", "paused", "contactGroupId", "location", "status"}, nil,
+			[]string{"name", "instance", "team", "test_tags", "paused", "contactGroupId", "location", "status"}, nil,
 		),
 	}, nil
 }
@@ -78,6 +78,7 @@ func (c *stkTestCollector) updateStkTest(ch chan<- prometheus.Metric) error {
 			float64(testStatus),
 			test.WebsiteName,
 			test.WebsiteURL,
+			"it-monitoring",
 			strings.Join(test.TestTags, ","),
 			strconv.FormatBool(test.Paused),
 			strings.Join(test.ContactGroup[:], ","),
@@ -88,6 +89,7 @@ func (c *stkTestCollector) updateStkTest(ch chan<- prometheus.Metric) error {
 			float64(test.Uptime),
 			test.WebsiteName,
 			test.WebsiteURL,
+			"it-monitoring",
 			strings.Join(test.TestTags, ","),
 			strconv.FormatBool(test.Paused),
 			strings.Join(test.ContactGroup[:], ","),
@@ -100,6 +102,7 @@ func (c *stkTestCollector) updateStkTest(ch chan<- prometheus.Metric) error {
 					float64(test.PerformanceData[p].Performance),
 					test.WebsiteName,
 					test.WebsiteURL,
+					"it-monitoring",
 					test.PerformanceData[p].Location,
 					strconv.Itoa(test.PerformanceData[p].Status),
 					strings.Join(test.TestTags, ","),
