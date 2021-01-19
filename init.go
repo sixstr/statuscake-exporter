@@ -9,8 +9,8 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/version"
 	log "github.com/sirupsen/logrus"
-	"github.com/sixstr/statuscake-exporter/collector"
-	"github.com/sixstr/statuscake-exporter/stk"
+	"github.com/sixstr/statuscake_exporter/collector"
+	"github.com/sixstr/statuscake_exporter/stk"
 )
 
 // Flags setup

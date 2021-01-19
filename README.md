@@ -1,8 +1,8 @@
-# statuscake-exporter
+# statuscake_exporter
 
 Prometheus StatusCake exporter
 
-Forked from https://github.com/mtulio/statuscake-exporter
+Forked from https://github.com/mtulio/statuscake_exporter
 
 Exporter [consumes data from StatusCake API](https://www.statuscake.com/api/Period%20Data/Get%20Period%20Data.md) using the [official lib](https://godoc.org/github.com/DreamItGetIT/statuscake) exposing it to Prometheus on port X.
 
@@ -34,7 +34,7 @@ The binary will be created on `./bin`
 
 * Show metrics from all StatusCake Tests
 
-`./bin/statuscake-exporter -stk.username my_stk_user -stk.apikey my_stk_apikey`
+`./bin/statuscake_exporter -stk.username my_stk_user -stk.apikey my_stk_apikey`
 
 ```
 # HELP statuscake_test_up Status Cake test Status
@@ -49,7 +49,7 @@ statuscake_test_uptime{name="MyApp02_-_front"} 100
 
 * Show metrics filtering by Tags from StatusCake Tests
 
-`./bin/statuscake-exporter -stk.username my_stk_user -stk.apikey my_stk_apikey -stk.tags "MyApp01"`
+`./bin/statuscake_exporter -stk.username my_stk_user -stk.apikey my_stk_apikey -stk.tags "MyApp01"`
 
 ```
 # HELP statuscake_test_up Status Cake test Status
@@ -59,18 +59,3 @@ statuscake_test_up{name="MyApp01_-_api"} 1
 # TYPE statuscake_test_uptime gauge
 statuscake_test_uptime{name="MyApp01_-_api"} 100
 ```
-
-## USAGE DOCKER
-
- Build Docker image:
-
-`make build`
-
-The binary will be created on `./bin` dir.
-
-`docker build -t sixstr/statuscake-exporter .`
-
-This will create a docker image.
-
-Set STATUSCAKE_APIKEY and STATUSCAKE_USER variables for Docker image, and  `docker run -d --rm -p 9190:9190 sixstr/sc-exporter`
-

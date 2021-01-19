@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/sixstr/statuscake-exporter/collector"
-	"github.com/sixstr/statuscake-exporter/stk"
+	"github.com/sixstr/statuscake_exporter/collector"
+	"github.com/sixstr/statuscake_exporter/stk"
 )
 
 type globalConf struct {

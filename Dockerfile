@@ -8,5 +8,5 @@ LABEL maintainer="sergey.bryzgalov@jetbrains.com"
 EXPOSE 9190
 RUN apk add ca-certificates && mkdir /app
 WORKDIR /app
-COPY --from=builder /bin/statuscake-exporter /app
-ENTRYPOINT ["/app/statuscake-exporter"]
+COPY --from=builder /bin/statuscake_exporter /app
+ENTRYPOINT ["/app/statuscake_exporter"]
