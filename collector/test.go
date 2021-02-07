@@ -29,12 +29,12 @@ func NewStkTestCollector() (Collector, error) {
 		stkTestUp: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, stkTestCollectorSubsystem, "up"),
 			"StatusCake Test Status",
-			[]string{"name", "instance", "test_tags", "paused", "contactGroupId"}, nil,
+			[]string{"name", "instance", "test_type", "test_port", "test_tags", "paused", "contactGroupId"}, nil,
 		),
 		stkTestUptime: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, stkTestCollectorSubsystem, "uptime"),
 			"StatusCake Test Uptime from the last 7 day",
-			[]string{"name", "instance", "test_tags", "paused", "contactGroupId"}, nil,
+			[]string{"name", "instance", "test_type", "test_port", "test_tags", "paused", "contactGroupId"}, nil,
 		),
 		stkTestPerf: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, stkTestCollectorSubsystem, "performance_ms"),
@@ -78,6 +78,8 @@ func (c *stkTestCollector) updateStkTest(ch chan<- prometheus.Metric) error {
 			float64(testStatus),
 			test.WebsiteName,
 			test.WebsiteURL,
+			test.TestType,
+			string(test.Port),
 			strings.Join(test.TestTags, ","),
 			strconv.FormatBool(test.Paused),
 			strings.Join(test.ContactGroup[:], ","),
@@ -88,6 +90,8 @@ func (c *stkTestCollector) updateStkTest(ch chan<- prometheus.Metric) error {
 			float64(test.Uptime),
 			test.WebsiteName,
 			test.WebsiteURL,
+			test.TestType,
+			string(test.Port),
 			strings.Join(test.TestTags, ","),
 			strconv.FormatBool(test.Paused),
 			strings.Join(test.ContactGroup[:], ","),
