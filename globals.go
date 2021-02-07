@@ -32,7 +32,7 @@ type globalProm struct {
 const (
 	exporterName        = "statuscake_exporter"
 	exporterDescription = "StatusCake Exporter"
-	defaultInterval     = 300
+	defaultInterval     = 90
 	defaultResolution   = 30
 )
 
